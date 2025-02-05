@@ -1,6 +1,4 @@
-body {
-    background-color: aquamarine;
-}
+
 body {
     font-family: 'Roboto', Arial, sans-serif;
     display: flex;
@@ -21,7 +19,7 @@ body {
     background-repeat: repeat-y;
     background-size: 900px auto;
     background-position: center;
-    color: rgb(251, 179, 195);
+    color: rgb(232, 127, 150);
     padding: 20px;
     text-align: center;
     max-width: 900px;
@@ -54,6 +52,20 @@ button {
 }
 
 
-#game screen {
+#game-screen {
     display: none;
 }
+
+#game-board {
+    display: grid;
+    gap: 0px;
+    background-image: url('images/backround.png');
+    background-size: cover;
+    background-position: center;
+    width: 50vw; 
+    height: 50vw; 
+    margin: 10px auto;
+    border: 2px solid #333;
+    padding: 0px;
+    background-color: rgba(221, 221, 221, 0.8);
+    }
