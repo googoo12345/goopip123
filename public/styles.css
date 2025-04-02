@@ -91,3 +91,16 @@ button {
     background-size: cover;
 }
 
+.bullet {
+    border-radius: 50%;
+    background-color: green;
+    animation : fadeOut 0.5s ease-out;
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}

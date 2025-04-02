@@ -88,14 +88,12 @@ function generateRandomBoard(){
 
 
     ghosts = [];
+
     for(let i= 0; i < 5; i++) {
         const [ghostX, ghostY] = randomEmptyPosition(newBoard);
         setCell(newBoard, ghostX, ghostY, 'H');
-        ghosts.push(new Ghost(ghostX,ghostY)); //työnnetään haamut listalle
-        console.log(ghosts);
+        ghosts.push(new Ghost(ghostX,ghostY)); // työnnetään haamut listalle
         }
-    
-
 
     return  newBoard;
 }
@@ -124,6 +122,13 @@ function generateRandomBoard(){
 
             else if (getCell(board, x, y) === 'H'){
                 cell.classList.add('hornmonster'); 
+            }
+            
+            else if (getCell(board, x, y) === 'B'){
+                cell.classList.add('bullet'); 
+                setTimeout(()=> {
+                    setCell(board, x, y, ' ')
+                }, 500)
             }
             
 
@@ -204,8 +209,8 @@ move(deltaX, deltaY){
     const currentX = player.x
     const currentY = player.y
 
-    console.log("nykyinen sijainti:")
-    console.log(currentX,currentY);
+    //console.log("nykyinen sijainti:")
+    //console.log(currentX,currentY);
 
     //lasketaan uusi sijainti
     const newX = currentX + deltaX;
@@ -237,6 +242,23 @@ move(deltaX, deltaY){
   }
 
   function ShootAt(x,y){
+
+  if(getCell(board, x, y) === 'W'){
+       return;
+    }
+
+    const ghostIndex = ghosts.findIndex(ghost => ghost.x === x && ghost.y === y);
+
+    if(ghostIndex !== -1){
+        ghosts.splice(ghostIndex, 1);
+    }
+
+
+    console.log(ghosts);
+
+    if (ghosts.length === 0){
+        alert('MOI')
+    }
       
        setCell(board, x, y, 'B');
        drawBoard(board);
