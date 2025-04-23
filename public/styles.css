@@ -39,8 +39,8 @@ h2, h1, p {
 }
 
 button {
-    background-color: rgb(78, 100, 44);
-    color: rgb(198, 247, 169);
+    background-color: rgb(254, 176, 213);
+    color: rgb(255, 255, 255);
     margin-left: 20px; /* Sama sisennys kuin monsterin kuvilla */
     align-self: flex-start; /* Asetetaan nappula vasempaan reunaan */
     padding: 20px 20px;
