@@ -4,6 +4,8 @@ const cellSize = calculateCellSize();
 let player;
 let ghosts = [];
 let ghostSpeed = 1000;
+let isGameRunning = false;
+let ghostInterval;
 
 
 document.getElementById("new-game-btn").addEventListener('click', startGame);
@@ -16,6 +18,7 @@ return gameBoardSize / BOARD_SIZE;
 }
 
 document.addEventListener('keydown', (event) => {
+    if (isGameRunning){
     switch (event.key) {
         case 'ArrowUp':
         player.move(0, -1)  //liikuta ylöspäin
@@ -41,7 +44,7 @@ document.addEventListener('keydown', (event) => {
         case 'd':
         shootAt(player.x + 1, player.y) // ampuu oikealle
         break;
-    }
+    }}
     event.preventDefault();
 });
 
@@ -49,10 +52,12 @@ function startGame(){
     document.getElementById('intro-screen').style.display = 'none';
     document.getElementById('game-screen').style.display = 'block';
 
+    isGameRunning = true;
+
     player = new Player(0,0)
     board = generateRandomBoard();
 
-    setInterval(moveGhosts, ghostSpeed)
+    ghostInterval = setInterval(moveGhosts, ghostSpeed)
     
     drawBoard(board);
 }
@@ -351,6 +356,11 @@ function moveGhosts(){
 
         setCell(board, ghost.x, ghost.y, 'H');
 
+        if (ghost.x===player.x && ghost.y === player.y){
+            endGame();
+            return;
+        }
+
         oldGhosts.forEach( ghost => {
             board[ghost.y][ghost.x] = ' '; // poistetaan vanhan haamun sijainti
         });
@@ -364,4 +374,12 @@ function moveGhosts(){
 
     });
 
+}
+
+function endGame(){
+    alert('kuolit')
+    isGameRunning = false;
+    clearInterval(ghostInterval);
+    document.getElementById('intro-screen').style.display = 'block';
+    document.getElementById('game-screen').style.display = 'none';
 }
